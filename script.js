@@ -1,31 +1,36 @@
-const add = (a, b) => a + b;
-const subtract = (a, b) => a - b;
-const multiply = (a, b) => a * b;
-const divide = (a, b) => b === 0 ? "Nope!" : a / b;
-
-const operators = ["+", "-", "/", "*", "%"];
-
 const userInput = document.querySelector("#user-input");
 const btnContainer = document.querySelector(".btns-container");
 
+const operations = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => b === 0 ? "Nope!" : a / b,
+    "%": (a, b) => a % b,
+};
 
 
 
-function updateDisplay(val) {
-    if(operators.includes(val) || Number(val)) userInput.value += val;
+
+function handleInput(val) {
+    userInput.value = val;
 }
 
 
 
+function operate(op, a, b) {
+    const result = operations[op](Number(a), Number(b));
+    return result;
+}
+
+
 btnContainer.addEventListener("click", (e) => {
-    updateDisplay(e.target.textContent); 
+    if (e.target.tagName !== "BUTTON") return;
+    handleInput(e.target.innerText);
 });
-
-
-
 
 window.addEventListener("keydown", (e) => {
-    updateDisplay(e.key);
+    handleInput(e.key);
 });
 
-
+console.log(operate("/", 1, 0));
