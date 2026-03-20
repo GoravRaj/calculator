@@ -63,7 +63,7 @@ function handleInput(val) {
         if (secondNum) {
             secondNum = secondNum.slice(0, -1);
         } else if (currentOp) {
-            currentOp = null; // Delete the operator if no second number exists
+            currentOp = null; 
         } else {
             firstNum = firstNum.slice(0, -1);
         }
